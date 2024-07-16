@@ -133,31 +133,34 @@
         --df-messenger-focus-color: black;
       }
 
-      .greeting-popup {
-        margin: 0;
-        position: fixed;
-        bottom: 90px;
-        right: 8px;
-        background: #9ec745;
-        color: white;
-        padding: 0rem;
-        font-size: 12px;
-        z-index: 1000;
-        border-radius: 14px;
-        text-align: center;
-        line-height: normal;
-        /* Add the following styles to shape like a conversation bubble */
-        height: 3rem;
-        width: 14rem;
-        border-bottom-right-radius: 0;
+/* styles.css */
+.greeting-popup {
+    margin: 0;
+    position: fixed;
+    bottom: 90px;
+    right: 8px;
+    background: #9ec745;
+    color: white;
+    padding: 0; /* Ensure padding is 0 */
+    font-size: 12px;
+    z-index: 1000;
+    border-radius: 14px;
+    text-align: center;
+    line-height: normal;
+    height: 2rem;
+    width: 14rem;
+    border-bottom-right-radius: 0;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
 
-        margin-right: 8px;
-        margin-bottom: 0px;
-        display: flex;
+/* Ensure there are no margins or paddings in child elements */
+.greeting-popup p {
+    margin: 0;
+    padding: 0;
+}
 
-        align-items: center;
-        justify-content: center;
-      }
     </style>
 
     <script>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css"
+    />
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
+    <div class="greeting-popup">
+      <p>Hi, How can we help you today?</p>
+    </div>
+
+    <!-- The container for the cards -->
+    <div class="card-container">
+      <!-- Card 1 -->
+      <a href="#" id="card-1">
+        <div class="card">
+          <img src="/assets/live-chat-icon.png" alt="Card image" height="54px" />
+        </div>
+      </a>
+      <!-- Card 2 -->
+      <a href="/link2">
+        <div class="card">
+          <img src="/assets/phone_icon.svg" alt="Card image" />
+        </div>
+      </a>
+      <!-- Card 3 -->
+      <a href="/link3">
+        <div class="card">
+          <img src="/assets/whatsapp_icon.svg" alt="Card image" />
+        </div>
+      </a>
+    </div>
+
+    <df-messenger
+      class="hidden"
+      intent="custom.welcome.event"
+      project-id="metsop"
+      agent-id="d59d4702-7b05-4100-9a1a-e71843274046"
+      language-code="en"
+      max-query-length="-1"
+    >
+      <df-messenger-chat-bubble
+        expanded="true"
+        chat-title="MetSop AI"
+        chat-title-icon="./assets/profile-image.png"
+        bot-actor-image=""
+        bot-writing-text="Thinking..."
+        chat-subtitle="online"
+        allow-fullscreen="small"
+        chat-collapse-icon="./assets/down_arrow.svg"
+        chat-icon="./assets/comment_icon.svg"
+      >
+      </df-messenger-chat-bubble>
+    </df-messenger>
+
+    <style>
+      .hidden {
+        display: none;
+      }
+      .hidden {
+        display: none;
+      }
+      /* Style the card container */
+      .card-container {
+        position: fixed;
+        bottom: 20px;
+        right: 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        border-radius: 100px;
+        /* border: 2px solid #00E525; */
+        background: #0293b8;
+        padding: 0.2rem;
+      }
+
+      .card {
+        margin: 2px;
+        flex-basis: 200px;
+        height: 3rem;
+        width: 4rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+      }
+      df-messenger {
+        z-index: 3000;
+        position: fixed;
+        --df-messenger-font-color: #000;
+        --df-messenger-font-family: Google Sans;
+        --df-messenger-chat-background: #ffffff;
+        --df-messenger-message-user-background: #9ec745;
+        --df-messenger-button-titlebar-color: #9ec745;
+        --df-messenger-message-bot-background: #eeeeee;
+        --df-messenger-send-icon: #b8187b;
+        --df-messenger-primary-color: #9ec745;
+        --df-messenger-titlebar-icon-width: 54px;
+        --df-messenger-titlebar-icon-height: 54px;
+        --df-messenger-titlebar-background: no-repeat url("/assets/backround-titlebar.png") center center / cover;
+       
+  
+
+        --df-messenger-titlebar-title-font-weight: 700;
+        --df-messenger-titlebar-font-color: rgb(32, 32, 32);
+        --df-messenger-titlebar-subtitle-font-color: rgb(88, 88, 88);
+        --df-messenger-titlebar-title-font-size: 16px;
+        --df-messenger-chat-scroll-button-font-color: white;
+        --df-messenger-chat-scroll-button-background: #9ec745;
+        --df-messenger-send-icon-color: #9ec745;
+        --df-messenger-input-box-focus-border: black;
+        bottom: 4px;
+        right: 16px;
+
+        --df-messenger-chat-window-height: 480px;
+      }
+
+      df-messenger-chat-bubble {
+        --df-messenger-chat-window-offset: 8px;
+        --df-messenger-chat-bubble-icon-size: 32px;
+        --df-messenger-chat-bubble-icon-color: white;
+        --df-messenger-chat-bubble-background: #9ec745;
+        --df-messenger-message-user-font-color: white;
+        --df-messenger-message-bot-font-color: rgb(51, 51, 51);
+        --df-messenger-chat-collapse-icon-size: 16px;
+        --df-messenger-focus-color: black;
+      }
+
+      .greeting-popup {
+        margin: 0;
+        position: fixed;
+        bottom: 90px;
+        right: 8px;
+        background: #9ec745;
+        color: white;
+        padding: 0rem;
+        font-size: 12px;
+        z-index: 1000;
+        border-radius: 14px;
+        text-align: center;
+        line-height: normal;
+        /* Add the following styles to shape like a conversation bubble */
+        height: 3rem;
+        width: 14rem;
+        border-bottom-right-radius: 0;
+
+        margin-right: 8px;
+        margin-bottom: 0px;
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+
+    <script>
+      const card1 = document.querySelector("#card-1");
+      const chatbot = document.querySelector(".hidden");
+      const cardContainer = document.querySelector(".card-container");
+
+      card1.addEventListener("click", () => {
+        chatbot.classList.remove("hidden");
+        cardContainer.style.display = "none";
+      });
+      window.onload = function () {
+        setTimeout(function () {
+          // Check if the chatbot is not open
+          const chatWindow = document.querySelector("df-messenger");
+          const isChatOpen = chatWindow.hasAttribute("opened");
+
+          // console.log(isChatOpen);
+
+          if (!isChatOpen) {
+            document.querySelector(".greeting-popup").style.display = "block";
+            var audio = document.getElementById("chime-sound");
+            audio.play().catch((error) => {
+              console.error("Error playing audio:", error);
+            });
+          }
+        }, 1000); // 5000 milliseconds = 5 seconds
+
+        const chatButton = document.querySelector("df-messenger");
+        chatButton.addEventListener("click", function () {
+          document.querySelector(".greeting-popup").style.display = "none";
+        });
+      };
+    </script>
+  </head>
+  <body></body>
+</html>
